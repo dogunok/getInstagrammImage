@@ -1,0 +1,27 @@
+{
+  "name": "getinstagrammimage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "routes.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-generator": "^4.16.1",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dogunok/getInstagrammImage.git"
+  },
+  "author": "igor samusev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dogunok/getInstagrammImage/issues"
+  },
+  "homepage": "https://github.com/dogunok/getInstagrammImage#readme"
+}
