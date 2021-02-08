@@ -1,11 +1,10 @@
 const fetch = require('node-fetch');
 const config = require('./config.json');
-const users = require('./users.json');
 
-const token = config.token;
+const token = config.token_alex;
 const limit = config.limit_image;
 
-const writeFile = require('./utils');
+const { writeFile, getSizeFile } = require('./utils');
 
 
 const router = app => {
@@ -20,10 +19,11 @@ const router = app => {
 
     app.get('/media/:userId', (req, res) => {
       console.log('ручка запросов')
-      fetch(`https://graph.instagram.com/me/media?limit=${limit}&fields=media_url&access_token=${token}`)
+      getSizeFile(req.params.userId)
+      fetch(`https://graph.instagram.com/me/media?limit=${limit}&fields=media_url,permalink&access_token=${token}`)
       .then(res => res.json())
       .then(object => {
-        if (object.paging.cursors) {
+        if (object.paging && object.paging.cursors) {
           writeFile(req.params.userId, object.paging.cursors.after)
         }
         return res.send(object)
@@ -31,12 +31,13 @@ const router = app => {
     })
 
     app.get('/media/next/:userId', (req, res) => {
-      console.log('ручка next')
+      const users = require(`./users/${req.params.userId}.json`);
 
-      fetch(`https://graph.instagram.com/me/media?limit=${limit}&fields=media_url&access_token=${token}&after=${users[req.params.userId]}`)
+      console.log('ручка next')
+      fetch(`https://graph.instagram.com/me/media?limit=${limit}&fields=media_url,permalink&access_token=${token}&after=${users.token_next_page}`)
         .then(res => res.json())
         .then(object => {
-          if (object.paging.cursors) {
+          if (object.paging && object.paging.cursors) {
             writeFile(req.params.userId, object.paging.cursors.after)
           }
           return res.send(object)
