@@ -1,5 +1,6 @@
 const fs = require('fs');
 const fsExtra = require('fs-extra');
+const config = require('./config.json');
 
 
 const writeFile = (user, newValue) => {
@@ -47,7 +48,7 @@ const getSizeFile = (userId) => {
       return
     }
     console.log(stats.size)
-    if(stats.size > 200) {
+    if(stats.size > config.max_size_users) {
       deleteFile(userId)
       return
     }
