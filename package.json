@@ -6,6 +6,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "cron": "^1.8.2",
+    "debug": "^4.3.1",
     "express": "^4.17.1",
     "express-generator": "^4.16.1",
     "fs-extra": "^9.1.0",
