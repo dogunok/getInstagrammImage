@@ -6,19 +6,20 @@ const routes = require('./routes.js');
 const config = require('./config.json');
 
 const port = config.serverPort;
+const host = config.serverHost;
 const app = express();
 
 
 app.use(cors())
-app.use(express.static('static'));
+// app.use(express.static('static'));
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 routes(app)
 
-const server = app.listen(port, '80-78-247-37.cloudvps.regruhosting.ru', err => {
+const server = app.listen(port, host, err => {
     if(err) throw console.log(`error - ${err}`)
-    console.log(`Server listening on port 80-78-247-37.cloudvps.regruhosting.ru:${server.address().port}`);
+    console.log(`Server listening on ${host}:${server.address().port}`);
 });
 
 
