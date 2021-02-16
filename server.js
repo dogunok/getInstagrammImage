@@ -14,13 +14,9 @@ const app = express();
 
 app.use(expressLogging(logger, {policy: 'params'}));
 
-// app.use(cors())
-// app.use(express.json())
-// app.use(express.urlencoded({ extended: true }))
-
 routes(app)
 
-const server = app.listen(port, err => {
+const server = app.listen(port,host, err => {
     if(err) throw console.log(`error - ${err}`)
     console.log(`Server listening on ${host}:${server.address().port}`);
 });
