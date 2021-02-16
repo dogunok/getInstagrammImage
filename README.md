@@ -18,8 +18,8 @@
   "mediaHost":"https://graph.instagram.com/me/media", // host instagram для получения ссылок на медиа файлы
   "updateHost":"https://graph.instagram.com/refresh_access_token", // обновление токена
   "serverHost": "", // домен на котором откроется ваш сервер
-  "token":"Ваш токен", // Нужен для получения файлов из instagramm
+  "token":"Ваш токен", // Нужен для получения файлов из instagram
   "siteHost": "доменное имя вашего сайта", // Имя вашего домена, нужно для прописания cors параметров
-  "fieldsParams": "media_url,permalink,thumbnail_url" // параметры которые вы хотите получать из API интаграмм
+  "fieldsParams": "media_url,permalink,thumbnail_url" // параметры которые вы хотите получать из API instagram
 }
   ```
