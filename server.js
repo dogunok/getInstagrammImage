@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const CronJob = require('cron').CronJob;
+const expressLogging = require('express-logging');
+const logger = require('logops');
 
 const routes = require('./routes.js');
 const config = require('./config.json');
@@ -10,14 +12,15 @@ const host = config.serverHost;
 const app = express();
 
 
-app.use(cors())
-// app.use(express.static('static'));
+app.use(expressLogging(logger, {policy: 'params'}));
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// app.use(cors())
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: true }))
+
 routes(app)
 
-const server = app.listen(port, host, err => {
+const server = app.listen(port, err => {
     if(err) throw console.log(`error - ${err}`)
     console.log(`Server listening on ${host}:${server.address().port}`);
 });
