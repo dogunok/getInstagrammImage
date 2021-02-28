@@ -64,6 +64,15 @@ const getSizeFile = (userId) => {
   })
 }
 
+const excludeMedia = (object) => {
+  const newArrData = object.data.filter(item => {
+    return !item.caption.toLowerCase().match(config.excludeTheWord)
+  })
+
+  object.data = newArrData;
+
+  return object;
+}
 
 
-module.exports = { writeFile, getSizeFile }
+module.exports = { writeFile, getSizeFile, excludeMedia }

@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const CronJob = require('cron').CronJob;
 const expressLogging = require('express-logging');
 const logger = require('logops');
@@ -16,7 +15,7 @@ app.use(expressLogging(logger, {policy: 'params'}));
 
 routes(app)
 
-const server = app.listen(port,host, err => {
+const server = app.listen(port, host, err => {
     if(err) throw console.log(`error - ${err}`)
     console.log(`Server listening on ${host}:${server.address().port}`);
 });

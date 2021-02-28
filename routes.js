@@ -1,5 +1,4 @@
 const fetch = require('node-fetch');
-const fs = require('fs');
 const cors = require('cors');
 
 const {
@@ -12,9 +11,9 @@ const {
 const config = require('./config.json');
 const token = config.token;
 
-const { writeFile, getSizeFile } = require('./utils');
+const { writeFile, getSizeFile, excludeMedia } = require('./utils');
 
-var corsOptions = {
+const corsOptions = {
   origin: siteHost,
   optionsSuccessStatus: 200
 }
@@ -30,7 +29,7 @@ const router = app => {
         writeFile(req.params.userId, object.paging.cursors.after);
       }
 
-      return res.send(object);
+      return res.send(excludeMedia(object));
     });
   });
 
@@ -42,7 +41,7 @@ const router = app => {
         if (object.paging && object.paging.cursors) {
           writeFile(req.params.userId, object.paging.cursors.after);
         }
-        return res.send(object);
+        return res.send(excludeMedia(object));
       });
   });
 }
